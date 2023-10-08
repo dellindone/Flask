@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://aditya:root@localhost/aditya'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'DX0fSItYzrpHitFWVJsUC6YUSf836ZIY'
 init_db(app)
 
 app.register_blueprint(home_bp)

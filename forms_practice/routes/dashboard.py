@@ -3,9 +3,9 @@ from models.user import Users, db
 
 dashboard_bp = Blueprint('dashboard', __name__, url_prefix = '/dashboard')
 
-@dashboard_bp.route('/dashboard')
+@dashboard_bp.route('/')
 def dashboard():
     if session['email']:
         user = Users.query.filter_by(email=session['email']).first()
         return render_template('dashboard.html', user=user)
-    return redirect('/api/login')
+    return redirect(url_for('/api/login'))

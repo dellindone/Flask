@@ -1,12 +1,20 @@
 from flask import Blueprint
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import OperationalError
 import bcrypt
 
 db = SQLAlchemy()
 
 def init_db(app):
-    db.init_app(app)
-    with app.app_context():
+    try:
+        db.init_app(app)
+        with app.app_context():
+            db.create_all()
+    except OperationalError as e:
+    # Attempt to reconnect to the database and retry the operation
+        db.session.rollback()
+        db.session.close()
+        db.engine.dispose()  # Dispose of the current database engine
         db.create_all()
 
 class Users(db.Model):
