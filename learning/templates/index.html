@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To-Do List</title>
+</head>
+<script>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            alert("{{ messages[0] }}"); // Show alert immediately
+        {% endif %}
+    {% endwith %}
+</script>
+
+<body>
+
+    <h1>To-Do List</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="New Task" required>
+        <textarea name="value" id="task_detials" placeholder="Enter your task details"></textarea>
+
+        <button type="submit">Add Task</button>
+        <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
+    </form>
+    <button> <a href="/clear"> Clear Session</a> </button>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Details</th>
+            </tr>
+            {% for i in tasks %}
+                <tr>
+                    <td>{{ i.id }} </td>
+                    <td>
+                        {{ i.detail }}<a href="/delete/{{ loop.index0 }}">[Delete]</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+</body>
+</html>
