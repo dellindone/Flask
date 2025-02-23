@@ -10,21 +10,19 @@ csrf = CSRFProtect(app)
 @app.route("/")
 def task():
     tasks = session.get("tasks", [])
-    print(tasks)
     return render_template("index.html", tasks = tasks, )
 
 @app.route("/add", methods = ["POST"])
 def add_task():
     task = request.form.get("task")
     details = request.form.get("value")
-    info = {
-        "id": task,
-        "detail": details
-    }
-    print(info)
+
     if task:
         tasks = session.get("tasks", [])
-        tasks.append(info)
+        tasks.append({
+            "id": task,
+            "detail": details
+        })
         session["tasks"] = tasks
         flash(f"{task} Task Added successfully!", "success")
     return redirect(url_for("task"))
