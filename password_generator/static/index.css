@@ -1,0 +1,78 @@
+:root {
+    --primary: #212529;
+    --primary-foreground: #ffffff;
+    --secondary: #343a40;
+    --secondary-foreground: #ffffff;
+    --accent: #495057;
+    --accent-foreground: #ffffff;
+    --background: #121212;
+    --foreground: #212529;
+    --card: #1e1e1e;
+    --card-foreground: #ffffff;
+    --border: #343a40;
+    --input: #2c2c2c;
+    --ring: #0d6efd;
+}
+
+body {
+    background-color: #121212;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: var(--foreground);
+    transition: all 0.3s ease;
+}
+
+.card {
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    color: var(--card-foreground);
+}
+
+.password-feedback {
+    min-height: 20px;
+    color: var(--foreground);
+}
+
+.badge {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+}
+
+.modal-content {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border-color: var(--border);
+}
+
+.modal-header {
+    border-bottom-color: var(--border);
+}
+
+.list-group-item {
+    background-color: var(--input);
+    color: var(--foreground);
+    border-color: var(--border);
+}
+
+.spinner-border {
+    color: var(--background);
+}
+
+#refreshButton:active i {
+    animation: spin 0.5s linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.progress-bar.weak { background-color: #dc3545; }
+.progress-bar.medium { background-color: #ffc107; }
+.progress-bar.strong { background-color: #198754; }
+
+@media (max-width: 576px) {
+    .card {
+        margin: 1rem;
+    }
+}
